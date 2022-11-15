@@ -13,8 +13,8 @@ function Navbar({ title }) {
             </div>
             <div className="flex px-2 mx-2">
                 <div className='flex justify-end'>
-                    <Link to='/' className='btn btn-ghost btn-sm'>Home</Link>
-                    <Link to='/about' className='btn btn-ghost btn-sm'>About</Link>
+                    <Link to='/' className='btn btn-ghost btn-sm'>Accueil</Link>
+                    <Link to='/about' className='btn btn-ghost btn-sm'>À propos</Link>
                 </div>
             </div>
         </div>
@@ -23,7 +23,7 @@ function Navbar({ title }) {
 }
 
 Navbar.defaultProps = {
-    title: 'Github Finder'
+    title: 'Recherche Github'
 }
 
 export default Navbar

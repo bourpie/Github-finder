@@ -1,12 +1,13 @@
-import './App.css'
+import UserResults from './components/users/UserResults'
 
 function App() {
-
+ 
 
   return (
 
     <>
-      <h1 className="text-6xl mb-4">Home</h1>
+      <UserResults />
+     
     </>
   )
 }

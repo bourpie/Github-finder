@@ -1,22 +1,19 @@
 import {useState, useEffect} from 'react'
 import Spinner from '../layout/Spinner'
+import UserItem from './UserItem'
+
+const URL = import.meta.env.VITE_API_URL
+const TOKEN = import.meta.env.VITE_API_TOKEN
 
 function UserResults() {
 
     const [users, setUsers] = useState([])
     const [loading, setLoading] = useState(true)
 
-    const API_URL = import.meta.env.VITE_API_URL
-  
-    useEffect(() => {
-      fetchUsers()
-    
-    }, [])  
-    
     const fetchUsers = async () => {
-        const response = await fetch(`${API_URL}/users`, {
+        const response = await fetch(`${URL}/users`, {
             headers: {
-                Authorization: `token ${import.meta.env.VITE_API_TOKEN}`
+                Authorization: `token ${TOKEN}`
             }
         })
         const data = await response.json()
@@ -24,14 +21,25 @@ function UserResults() {
         setUsers(data)
         setLoading(false)
 
+        console.log(data)
+
     }
+  
+    useEffect(() => {
+        if(!users.length) {
+            fetchUsers()
+        }      
+    }, [])  
+    
 
     if(!loading) {
         return (
             <ul className='grid grid-cols-1 gap-8 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2'>
-                {users.map((user, index) => (
-                    <li key={index}>{user.login}</li>
+                {users.map(user => (
+                    <UserItem key={user.id} user={user} />
                 ))}
+                    
+
             </ul>
         )
     } else {

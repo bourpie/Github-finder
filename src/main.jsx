@@ -14,7 +14,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <Router>
       <div className='flex flex-col h-screen'>
         <Navbar />
-        <main className='pb-16'>
+        <main className='pb-16 mb-auto'>
           <div className="container">
             <Routes>
               <Route path='/' element={ <App />} />

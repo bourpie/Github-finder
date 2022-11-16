@@ -1,30 +1,17 @@
-import {useState, useEffect} from 'react'
+import {useEffect, useContext} from 'react'
 import Spinner from '../layout/Spinner'
 import UserItem from './UserItem'
+import GithubContext from '../../context/github/GithubContext'
 
-const URL = import.meta.env.VITE_API_URL
-const TOKEN = import.meta.env.VITE_API_TOKEN
 
 function UserResults() {
 
-    const [users, setUsers] = useState([])
-    const [loading, setLoading] = useState(true)
-
-    const fetchUsers = async () => {
-        const response = await fetch(`${URL}/users`, {
-            headers: {
-                Authorization: `token ${TOKEN}`
-            }
-        })
-        const data = await response.json()
-
-        setUsers(data)
-        setLoading(false)
-
-        console.log(data)
-
-    }
-  
+    const {
+        users,
+        loading,
+        fetchUsers,
+    } = useContext(GithubContext)
+ 
     useEffect(() => {
         if(!users.length) {
             fetchUsers()
@@ -38,8 +25,6 @@ function UserResults() {
                 {users.map(user => (
                     <UserItem key={user.id} user={user} />
                 ))}
-                    
-
             </ul>
         )
     } else {
